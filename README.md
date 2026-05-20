@@ -56,7 +56,7 @@ financial_dashboard/
 ├── README.md
 └── myenv/
 
-
+```
 
 # 🌐 Live Demo
 
