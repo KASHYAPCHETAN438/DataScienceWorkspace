@@ -20,16 +20,29 @@ st.set_page_config(
 # LOAD CSS
 # =========================================================
 
-
-
 def load_css(file_name):
-    css_path = os.path.join(os.path.dirname(__file__), file_name)
 
-    with open(css_path, encoding="utf-8") as f:
-        st.markdown(
-            f"<style>{f.read()}</style>",
-            unsafe_allow_html=True
+    try:
+
+        css_path = os.path.join(
+            os.path.dirname(__file__),
+            file_name
         )
+
+        with open(css_path, encoding="utf-8") as f:
+
+            st.markdown(
+                f"<style>{f.read()}</style>",
+                unsafe_allow_html=True
+            )
+
+    except FileNotFoundError:
+
+        st.warning(
+            f"CSS file not found: {file_name}"
+        )
+
+# LOAD CSS FILE
 
 load_css("style.css")
 
@@ -40,51 +53,99 @@ load_css("style.css")
 @st.cache_data
 def load_data():
 
-    df = pd.read_excel(
-        "FinalExcelSureTrust.xlsx",
-        sheet_name="Dataset & All Question",
-        header=3
-    )
+    try:
 
-    # REMOVE UNNAMED COLUMNS
+        # EXCEL FILE PATH
 
-    df = df.loc[
-        :,
-        ~df.columns.str.contains("^Unnamed")
-    ]
+        excel_path = os.path.join(
+            os.path.dirname(__file__),
+            "FinalExcelSureTrust.xlsx"
+        )
 
-    # CLEAN COLUMNS
+        # READ EXCEL FILE
 
-    df.columns = df.columns.str.strip()
+        df = pd.read_excel(
+            excel_path,
+            sheet_name="Dataset & All Question",
+            header=3
+        )
 
-    # REQUIRED COLUMNS
+        # REMOVE UNNAMED COLUMNS
 
-    required_columns = [
+        df = df.loc[
+            :,
+            ~df.columns.str.contains("^Unnamed")
+        ]
 
-        "Order Date",
-        "Product Name",
-        "Category",
-        "Region",
-        "Unit_cost",
-        "Quantity",
-        "Sales",
-        "Profit"
+        # CLEAN COLUMN NAMES
 
-    ]
+        df.columns = df.columns.str.strip()
 
-    df = df[required_columns]
+        # REQUIRED COLUMNS
 
-    # REMOVE NULL VALUES
+        required_columns = [
 
-    df = df.dropna()
+            "Order Date",
+            "Product Name",
+            "Category",
+            "Region",
+            "Unit_cost",
+            "Quantity",
+            "Sales",
+            "Profit"
 
-    # DATE FORMAT
+        ]
 
-    df["Order Date"] = pd.to_datetime(
-        df["Order Date"]
-    ).dt.strftime("%d-%m-%Y")
+        # CHECK MISSING COLUMNS
 
-    return df
+        missing_columns = [
+
+            col for col in required_columns
+            if col not in df.columns
+
+        ]
+
+        if missing_columns:
+
+            st.error(
+                f"Missing columns in dataset: {missing_columns}"
+            )
+
+            st.stop()
+
+        # KEEP REQUIRED COLUMNS
+
+        df = df[required_columns]
+
+        # REMOVE NULL VALUES
+
+        df = df.dropna()
+
+        # DATE FORMAT
+
+        df["Order Date"] = pd.to_datetime(
+            df["Order Date"]
+        ).dt.strftime("%d-%m-%Y")
+
+        return df
+
+    except FileNotFoundError:
+
+        st.error(
+            "Excel file not found: FinalExcelSureTrust.xlsx"
+        )
+
+        st.stop()
+
+    except Exception as e:
+
+        st.error(
+            f"Error loading dataset: {e}"
+        )
+
+        st.stop()
+
+# LOAD DATAFRAME
 
 df = load_data()
 
@@ -114,29 +175,38 @@ st.markdown(
 # DATASET INFORMATION
 # =========================================================
 
-st.markdown("""
-<div class="section-title">
-📂 Dataset Information
-</div>
-""", unsafe_allow_html=True)
+st.markdown(
+    """
+    <div class="section-title">
+        📂 Dataset Information
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
-st.markdown("""
+st.markdown(
+    """
 
 ## Description
             
-- #####  Superstore Dataset Final is aretail business dataset used for financial analytics, sales forecasting, and business intelligence projects. 
-- ##### It contains transactional records of products sold across different regions, including order date, product name, region, unit cost, quantity, sales, profit, category, and customer-related insights.           
+- ##### Superstore Dataset Final is a retail business dataset used for financial analytics, sales forecasting, and business intelligence projects.
+
+- ##### It contains transactional records of products sold across different regions, including order date, product name, region, unit cost, quantity, sales, profit, category, and customer-related insights.
+
 - ##### The dataset is highly useful for projects involving Excel, SQL, Python, Data Science, Machine Learning, and Power BI.
 
 ## Gathering Details
 
-- ##### **Dataset Source:** Kaggle  
-- ##### **Dataset Name:** Superstore Dataset Final  
-- ##### **Format:** CSV / Excel  
-- ##### **Project Type:** Corporate Financial Analytics  
-""")
+- ##### **Dataset Source:** Kaggle
 
+- ##### **Dataset Name:** Superstore Dataset Final
 
+- ##### **Format:** CSV / Excel
+
+- ##### **Project Type:** Corporate Financial Analytics
+
+"""
+)
 
 # =========================================================
 # DATASET PREVIEW
@@ -154,7 +224,7 @@ st.markdown(
 st.dataframe(
     df,
     height=450,
-    width="stretch"
+    use_container_width=True
 )
 
 # =========================================================
@@ -175,63 +245,76 @@ module = st.selectbox(
     [
 
         "📊 Excel Tasks",
-
         "🗄 SQL Tasks",
-
         "🐍 Python Tasks",
-
         "🤖 Data Science Tasks",
-
         "📈 Power BI Tasks"
 
     ],
     label_visibility="hidden"
 )
 
-
 # =========================================================
 # SELECTED MODULE TITLE
 # =========================================================
 
-st.markdown(f"""
-<div class="selected-module-box">
-    <div class="selected-module-text">
-        {module}
+st.markdown(
+    f"""
+    <div class="selected-module-box">
+        <div class="selected-module-text">
+            {module}
+        </div>
     </div>
-</div>
-""", unsafe_allow_html=True)
+    """,
+    unsafe_allow_html=True
+)
 
 # =========================================================
 # LOAD PAGES
 # =========================================================
 
-if module == "📊 Excel Tasks":
+try:
 
-    from pages.Excel_Tasks import run_excel_tasks
+    if module == "📊 Excel Tasks":
 
-    run_excel_tasks(df)
+        from pages.Excel_Tasks import run_excel_tasks
 
-elif module == "🗄 SQL Tasks":
+        run_excel_tasks(df)
 
-    from pages.SQL_Tasks import run_sql_tasks
+    elif module == "🗄 SQL Tasks":
 
-    run_sql_tasks()
+        from pages.SQL_Tasks import run_sql_tasks
 
-elif module == "🐍 Python Tasks":
+        run_sql_tasks()
 
-    from pages.Python_Tasks import run_python_tasks
+    elif module == "🐍 Python Tasks":
 
-    run_python_tasks()
+        from pages.Python_Tasks import run_python_tasks
 
-elif module == "🤖 Data Science Tasks":
+        run_python_tasks()
 
-    from pages.DataScience_Tasks import run_advanced_python_tasks
+    elif module == "🤖 Data Science Tasks":
 
-    run_advanced_python_tasks()
+        from pages.DataScience_Tasks import (
+            run_advanced_python_tasks
+        )
 
-elif module == "📈 Power BI Tasks":
+        run_advanced_python_tasks()
 
-    from pages.PowerBI_Tasks import run_powerbi_tasks
+    elif module == "📈 Power BI Tasks":
 
-    run_powerbi_tasks()
+        from pages.PowerBI_Tasks import run_powerbi_tasks
 
+        run_powerbi_tasks()
+
+except ModuleNotFoundError as e:
+
+    st.error(
+        f"Module import error: {e}"
+    )
+
+except Exception as e:
+
+    st.error(
+        f"Unexpected error: {e}"
+    )
