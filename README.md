@@ -7,9 +7,7 @@ This project visualizes sales, profit, cost, category analysis, regional analysi
 
 
 # 📸 Dashboard Preview
-
-![Financial Dashboard](<img width="1364" height="593" alt="image" src="https://github.com/user-attachments/assets/c45039ea-d167-4bef-9ed0-a902d7c69169" />
-)
+<img width="1364" height="593" alt="image" src="https://github.com/user-attachments/assets/c45039ea-d167-4bef-9ed0-a902d7c69169" />
 
 
 ---
