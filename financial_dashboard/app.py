@@ -4,6 +4,7 @@
 
 import streamlit as st
 import pandas as pd
+import os
 
 # =========================================================
 # PAGE CONFIG
@@ -19,10 +20,12 @@ st.set_page_config(
 # LOAD CSS
 # =========================================================
 
+
+
 def load_css(file_name):
+    css_path = os.path.join(os.path.dirname(__file__), file_name)
 
-    with open(file_name, encoding="utf-8") as f:
-
+    with open(css_path, encoding="utf-8") as f:
         st.markdown(
             f"<style>{f.read()}</style>",
             unsafe_allow_html=True
