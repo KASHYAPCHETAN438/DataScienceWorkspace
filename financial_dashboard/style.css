@@ -1,0 +1,478 @@
+/* ================= GLOBAL ================= */
+
+.stApp {
+    background: #0B1727;
+    color: #E5E7EB;
+}
+
+/* ================= REMOVE STREAMLIT ================= */
+
+header,
+footer,
+#MainMenu {
+    visibility: hidden;
+}
+
+.block-container {
+    padding-top: 2rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+/* ================= SIDEBAR ================= */
+
+section[data-testid="stSidebar"] {
+
+    background: #08111F;
+
+    border-right:
+        1px solid rgba(255,255,255,0.08);
+
+    padding-top: 2rem;
+}
+
+/* ================= SIDEBAR TITLE ================= */
+
+.sidebar-title {
+
+    text-align: center;
+
+    font-size: 30px;
+
+    font-weight: 700;
+
+    color: #00D4FF;
+
+    margin-bottom: 40px;
+}
+
+/* ================= MAIN TITLE ================= */
+
+.main-title {
+
+    text-align: center;
+
+    font-size: 56px;
+
+    font-weight: 800;
+
+    color: white;
+
+    margin-bottom: 10px;
+}
+
+/* ================= SUBTITLE ================= */
+
+.sub-title {
+
+    text-align: center;
+
+    font-size: 20px;
+
+    color: #94A3B8;
+
+    margin-bottom: 50px;
+}
+
+/* ================= SECTION TITLE ================= */
+
+.section-title {
+
+    font-size: 34px;
+
+    font-weight: 700;
+
+    color: #FACC15;
+
+    margin-top: 20px;
+
+    margin-bottom: 20px;
+}
+
+/* ================= KPI CARDS ================= */
+
+[data-testid="metric-container"] {
+
+    background: #132238;
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+
+    border-radius: 20px;
+
+    padding: 25px;
+
+    box-shadow:
+        0px 4px 15px rgba(0,0,0,0.3);
+}
+
+/* KPI LABEL */
+
+[data-testid="metric-container"] label {
+
+    color: #94A3B8 !important;
+
+    font-size: 16px !important;
+}
+
+/* KPI VALUE */
+
+[data-testid="metric-container"] div {
+
+    color: white !important;
+
+    font-size: 28px !important;
+
+    font-weight: bold !important;
+}
+
+/* ================= SELECTBOX ================= */
+
+.stSelectbox > div > div {
+
+    background: #132238;
+
+    border:
+        1px solid rgba(255,255,255,0.1);
+
+    color: white;
+
+    border-radius: 12px;
+}
+
+/* ================= RADIO ================= */
+
+.stRadio > div {
+
+    background: #132238;
+
+    padding: 15px;
+
+    border-radius: 18px;
+}
+
+/* ================= TABLE ================= */
+
+[data-testid="stDataFrame"],
+[data-testid="stDataEditor"] {
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+
+    background: #132238;
+}
+
+/* ================= CHARTS ================= */
+
+[data-testid="stPlotlyChart"] {
+
+    background: #132238;
+
+    border-radius: 18px;
+
+    padding: 10px;
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+}
+
+/* ================= BUTTON ================= */
+
+.stButton button,
+.stDownloadButton button {
+
+    background: #00D4FF;
+
+    color: black;
+
+    border-radius: 12px;
+
+    border: none;
+
+    font-weight: 700;
+
+    height: 50px;
+}
+
+/* ================= FOOTER ================= */
+
+.footer {
+
+    text-align: center;
+
+    color: #94A3B8;
+
+    margin-top: 40px;
+}
+
+/* =========================================================
+   DATASET SECTION
+========================================================= */
+
+.dataset-container {
+
+    margin-top: 40px;
+    margin-bottom: 40px;
+
+    padding: 35px;
+
+    border-radius: 25px;
+
+    background: linear-gradient(
+        135deg,
+        rgba(7,17,45,0.95),
+        rgba(10,30,70,0.95)
+    );
+
+    border: 1px solid rgba(0,255,255,0.2);
+
+    box-shadow:
+        0px 0px 25px rgba(0,255,255,0.15);
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.dataset-header {
+
+    font-size: 42px;
+
+    font-weight: 800;
+
+    color: #FFD700;
+
+    margin-bottom: 35px;
+
+    text-shadow:
+        0px 0px 12px rgba(255,215,0,0.5);
+}
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.dataset-grid {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 30px;
+}
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.dataset-card {
+
+    background: linear-gradient(
+        145deg,
+        rgba(0,20,40,0.95),
+        rgba(0,40,70,0.95)
+    );
+
+    padding: 30px;
+
+    border-radius: 22px;
+
+    border: 1px solid rgba(0,255,255,0.25);
+
+    transition: 0.3s;
+
+    box-shadow:
+        0px 0px 20px rgba(0,255,255,0.08);
+}
+
+/* =========================================================
+   CARD HOVER
+========================================================= */
+
+.dataset-card:hover {
+
+    transform: translateY(-5px);
+
+    box-shadow:
+        0px 0px 25px rgba(0,255,255,0.25);
+}
+
+/* =========================================================
+   CARD TITLE
+========================================================= */
+
+.card-title {
+
+    font-size: 28px;
+
+    font-weight: bold;
+
+    color: #00F5FF;
+
+    margin-bottom: 25px;
+
+    text-shadow:
+        0px 0px 10px rgba(0,255,255,0.4);
+}
+
+/* =========================================================
+   CARD CONTENT
+========================================================= */
+
+.card-content {
+
+    font-size: 18px;
+
+    line-height: 2;
+
+    color: #EAEAEA;
+}
+
+/* =========================================================
+   BOLD TEXT
+========================================================= */
+
+.card-content span {
+
+    color: #FFD700;
+
+    font-weight: bold;
+}
+
+/* =========================================================
+   LIST
+========================================================= */
+
+.card-content ul {
+
+    margin-top: 15px;
+
+    padding-left: 25px;
+}
+
+.card-content li {
+
+    margin-bottom: 10px;
+}
+
+/* =========================================================
+   LINK
+========================================================= */
+
+.card-content a {
+
+    color: #00F5FF;
+
+    text-decoration: none;
+
+    font-weight: bold;
+}
+
+.card-content a:hover {
+
+    color: #FFD700;
+}
+
+/* =========================================================
+   MOBILE RESPONSIVE
+========================================================= */
+
+@media screen and (max-width: 900px) {
+
+    .dataset-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+    .dataset-header {
+
+        font-size: 32px;
+    }
+
+    .card-title {
+
+        font-size: 24px;
+    }
+}
+
+/* =========================================================
+   MODULE TITLE
+========================================================= */
+
+.module-title {
+
+    font-size: 48px;
+
+    font-weight: 800;
+
+    color: #FFD700;
+
+    margin-top: 50px;
+
+    margin-bottom: 20px;
+
+    text-align: center;
+
+    text-shadow:
+        0px 0px 18px rgba(255,215,0,0.6);
+}
+
+/* =========================================================
+   SELECTED MODULE BOX
+========================================================= */
+
+.selected-module-box {
+
+    width: 65%;
+
+    margin: 40px auto;
+
+    padding: 35px;
+
+    border-radius: 24px;
+
+    background: linear-gradient(
+        135deg,
+        #0f2942,
+        #12385c
+    );
+
+    border: 2px solid #00e5ff;
+
+    box-shadow:
+        0px 0px 30px rgba(0,229,255,0.45);
+
+    text-align: center;
+}
+
+/* =========================================================
+   MODULE TEXT
+========================================================= */
+
+.selected-module-text {
+
+    font-size: 42px;
+
+    font-weight: 800;
+
+    color: white;
+
+    letter-spacing: 1px;
+
+    text-shadow:
+        0px 0px 15px rgba(255,255,255,0.35);
+}
+
+
+div[data-baseweb="select"] {
+
+    display: inline-block !important;
+
+    width: auto !important;
+
+    min-width: 300px !important;
+}
