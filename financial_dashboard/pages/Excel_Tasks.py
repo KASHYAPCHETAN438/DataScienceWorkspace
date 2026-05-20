@@ -79,9 +79,9 @@ def run_excel_tasks(df):
 
         st.subheader("Question-1 Data")
 
-        # =================================================
-        # P&L
-        # =================================================
+        # =========================================
+        # PROFIT & LOSS
+        # =========================================
 
         st.markdown(
             '<div class="q3-label">Build Profit & Loss Statement</div>',
@@ -111,9 +111,9 @@ def run_excel_tasks(df):
                 hide_index=True
             )
 
-        # =================================================
+        # =========================================
         # BALANCE SHEET
-        # =================================================
+        # =========================================
 
         st.markdown(
             '<div class="q3-label">Balance Sheet</div>',
@@ -143,9 +143,9 @@ def run_excel_tasks(df):
                 hide_index=True
             )
 
-        # =================================================
+        # =========================================
         # CASH FLOW
-        # =================================================
+        # =========================================
 
         st.markdown(
             '<div class="q3-label">Cash Flow Statement</div>',
@@ -435,3 +435,224 @@ def run_excel_tasks(df):
             st.warning(
                 "Forecast chart image not found."
             )
+
+    # =====================================================
+    # QUESTION 6
+    # =====================================================
+
+    elif excel_task == "Scenario Analysis":
+
+        st.subheader("Scenario Analysis Dashboard")
+
+        q6_df = safe_read_excel(
+            sheet_name="Question-6",
+            skiprows=3
+        )
+
+        q6_df = q6_df.loc[
+            :,
+            ~q6_df.columns.str.contains("^Unnamed")
+        ]
+
+        q6_df = q6_df.iloc[:, 0:5]
+
+        q6_df.columns = [
+            "Cost",
+            "Sales",
+            "Profit",
+            "New Cost",
+            "New Profit"
+        ]
+
+        st.markdown(
+            """
+            <div style="
+                background-color:#8BC34A;
+                padding:25px;
+                border-radius:15px;
+                text-align:center;
+                margin-bottom:20px;
+                box-shadow:0px 4px 10px rgba(0,0,0,0.3);
+            ">
+                <h1 style="color:black;">Cost Change %</h1>
+                <h2 style="color:black;">20%</h2>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+        st.dataframe(
+            q6_df,
+            use_container_width=True,
+            height=500
+        )
+
+        fig = px.bar(
+            q6_df,
+            x=q6_df.index,
+            y=["Profit", "New Profit"],
+            barmode="group",
+            title="Old Profit vs New Profit"
+        )
+
+        st.plotly_chart(
+            fig,
+            use_container_width=True
+        )
+
+    # =====================================================
+    # QUESTION 7
+    # =====================================================
+
+    elif excel_task == "Automate quarterly reports with macros":
+
+        st.subheader("Question-7 Data")
+
+        q7_df = safe_read_excel(
+            sheet_name="Question-7",
+            skiprows=3
+        )
+
+        q7_df = q7_df.loc[
+            :,
+            ~q7_df.columns.str.contains("^Unnamed")
+        ]
+
+        q7_df["Order Date"] = pd.to_datetime(
+            q7_df["Order Date"]
+        ).dt.strftime("%d-%m-%Y")
+
+        st.dataframe(
+            q7_df,
+            use_container_width=True
+        )
+
+        st.subheader("VBA Pivot Report")
+
+        pivot_df = safe_read_excel(
+            sheet_name="VBA-Pivot_Report Q_7",
+            skiprows=3
+        )
+
+        pivot_df = pivot_df.loc[
+            :,
+            ~pivot_df.columns.str.contains("^Unnamed")
+        ]
+
+        pivot_df = pivot_df[
+            pivot_df.iloc[:, 0] != "Grand Total"
+        ]
+
+        pivot_df.columns = [
+            "Quarter",
+            "Sum of Sales",
+            "Sum of Profit"
+        ]
+
+        st.dataframe(
+            pivot_df,
+            use_container_width=True
+        )
+
+        fig = px.bar(
+            pivot_df,
+            x="Quarter",
+            y=["Sum of Sales", "Sum of Profit"],
+            barmode="group",
+            title="Quarter-wise Sales and Profit"
+        )
+
+        st.plotly_chart(
+            fig,
+            use_container_width=True
+        )
+
+    # =====================================================
+    # QUESTION 8
+    # =====================================================
+
+    elif excel_task == "KPI Dashboard":
+
+        st.subheader("KPI Dashboard")
+
+        total_sales = df["Sales"].sum()
+        total_profit = df["Profit"].sum()
+        total_quantity = df["Quantity"].sum()
+
+        c1, c2, c3 = st.columns(3)
+
+        with c1:
+            st.metric(
+                "Total Sales",
+                f"{total_sales:,.0f}"
+            )
+
+        with c2:
+            st.metric(
+                "Total Profit",
+                f"{total_profit:,.0f}"
+            )
+
+        with c3:
+            st.metric(
+                "Total Quantity",
+                f"{total_quantity:,.0f}"
+            )
+
+        sales_by_region = df.groupby(
+            "Region"
+        )["Sales"].sum().reset_index()
+
+        fig = px.pie(
+            sales_by_region,
+            names="Region",
+            values="Sales",
+            title="Region-wise Sales"
+        )
+
+        st.plotly_chart(
+            fig,
+            use_container_width=True
+        )
+
+    # =====================================================
+    # QUESTION 9
+    # =====================================================
+
+    elif excel_task == "Link Excel outputs to SQL queries.":
+
+        st.subheader("Excel to SQL Integration")
+
+        st.info(
+            "This task demonstrates how Excel outputs "
+            "can be connected with SQL queries."
+        )
+
+        st.dataframe(
+            df.head(20),
+            use_container_width=True
+        )
+
+    # =====================================================
+    # QUESTION 10
+    # =====================================================
+
+    elif excel_task == "Export data for Python analysis":
+
+        st.subheader("Export Data for Python Analysis")
+
+        csv = df.to_csv(
+            index=False
+        ).encode("utf-8")
+
+        st.download_button(
+            label="Download CSV File",
+            data=csv,
+            file_name="financial_analysis.csv",
+            mime="text/csv"
+        )
+
+        st.dataframe(
+            df.head(50),
+            use_container_width=True
+        )
