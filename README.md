@@ -10,6 +10,9 @@ This project visualizes sales, profit, cost, category analysis, regional analysi
 <img width="1364" height="593" alt="image" src="https://github.com/user-attachments/assets/c45039ea-d167-4bef-9ed0-a902d7c69169" />
 
 
+<img width="1346" height="735" alt="image" src="https://github.com/user-attachments/assets/e5ba7f3a-ed89-4de8-ac26-2d36e8789b7d" />
+
+
 ---
 # 🚀 Features
 
