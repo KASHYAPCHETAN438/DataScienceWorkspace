@@ -4,7 +4,9 @@
 
 import streamlit as st
 from PIL import Image
+import os 
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 def run_powerbi_tasks():
 
@@ -31,7 +33,8 @@ def run_powerbi_tasks():
 
         st.subheader(" Revenue, Cost, Profit Trends")
 
-        image = Image.open("Assests/s1.png")
+        image_path = os.path.join(BASE_DIR, "Assets", "s1.png")
+        image = Image.open(image_path)
 
         st.image(
             image,
@@ -47,7 +50,8 @@ def run_powerbi_tasks():
 
         st.subheader(" Product Category Slicers")
 
-        image = Image.open("Assests/s2.png")
+        image_path = os.path.join(BASE_DIR, "Assets", "s2.png")
+        image = Image.open(image_path)
 
         st.image(
             image,
@@ -63,7 +67,8 @@ def run_powerbi_tasks():
 
         st.subheader(" YoY Growth Visualization")
 
-        image = Image.open("Assests/s3.png")
+        image_path = os.path.join(BASE_DIR, "Assets", "s3.png")
+        image = Image.open(image_path)
 
         st.image(
             image,
@@ -78,7 +83,8 @@ def run_powerbi_tasks():
 
         st.subheader(" Drill-through Regional Analysis")
 
-        image = Image.open("Assests/s4.png")
+        image_path = os.path.join(BASE_DIR, "Assets", "s4.png")
+        image = Image.open(image_path)
 
         st.image(
             image,
@@ -94,7 +100,8 @@ def run_powerbi_tasks():
 
         st.subheader(" KPI Cards")
 
-        image = Image.open("Assests/s5.png")
+        image_path = os.path.join(BASE_DIR, "Assets", "s5.png")
+        image = Image.open(image_path)
 
         st.image(
             image,
@@ -111,7 +118,8 @@ def run_powerbi_tasks():
 
         st.subheader(" Revenue Forecasting")
 
-        image = Image.open("Assests/s6.png")
+        image_path = os.path.join(BASE_DIR, "Assets", "s6.png")
+        image = Image.open(image_path)
 
         st.image(
             image,
@@ -127,7 +135,8 @@ def run_powerbi_tasks():
 
         st.subheader(" Scenario Based Dashboard")
 
-        image = Image.open("Assests/s7.png")
+        image_path = os.path.join(BASE_DIR, "Assets", "s7.png")
+        image = Image.open(image_path)
 
         st.image(
             image,
@@ -146,7 +155,8 @@ def run_powerbi_tasks():
 
         st.subheader("Published Executive Dashboard")
 
-        image = Image.open("Assests/s8.png")
+        image_path = os.path.join(BASE_DIR, "Assets", "s8.png")
+        image = Image.open(image_path)
 
         st.markdown("<br><br>", unsafe_allow_html=True)
 

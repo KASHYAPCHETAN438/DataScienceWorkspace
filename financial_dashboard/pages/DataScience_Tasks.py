@@ -32,7 +32,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 def run_advanced_python_tasks():
 
-    st.title("🚀 Advanced Python & Data Science Tasks")
+    st.title(" Advanced Python & Data Science Tasks")
 
     task = st.selectbox(
         "Select Advanced Task",
