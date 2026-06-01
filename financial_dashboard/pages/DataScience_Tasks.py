@@ -25,6 +25,10 @@ from sklearn.tree import DecisionTreeClassifier
 
 from statsmodels.tsa.arima.model import ARIMA
 
+import os 
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 
 def run_advanced_python_tasks():
 
@@ -50,10 +54,11 @@ def run_advanced_python_tasks():
     # LOAD DATASET
     # ==========================================
 
-    df = pd.read_csv(
-        "DatasetSureTrust.csv",
-        encoding="latin1"
-    )
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+    csv_path = os.path.join(BASE_DIR, "DatasetSureTrust.csv")
+
+    df = pd.read_csv(csv_path, encoding="latin1")
 
     # ==========================================
     # DATA CLEANING
