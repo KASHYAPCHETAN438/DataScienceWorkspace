@@ -18,8 +18,8 @@ def run_powerbi_tasks():
             "Drill-through for regional analysis",
             "KPI cards for profitability",
             "Forecasting visuals for revenue",
-            "Scenario-based dashboards"
-            # "Publish dashboard for executives"
+            "Scenario-based dashboards",    
+            "Publish dashboard for executives"
         ]
     )
 
@@ -38,8 +38,7 @@ def run_powerbi_tasks():
             use_container_width=True
         )
 
-        st.success("Revenue, Cost & Profit Dashboard Loaded Successfully")
-
+        
     # ==========================================
     # QUESTION 2
     # ==========================================
@@ -55,8 +54,7 @@ def run_powerbi_tasks():
             use_container_width=True
         )
 
-        st.success("Slicers Dashboard Loaded Successfully")
-
+       
     # ==========================================
     # QUESTION 3
     # ==========================================
@@ -71,8 +69,6 @@ def run_powerbi_tasks():
             image,
             use_container_width=True
         )
-
-        st.success("YoY Growth Dashboard Loaded Successfully")
 
     # ==========================================
     # QUESTION 4
@@ -89,7 +85,6 @@ def run_powerbi_tasks():
             use_container_width=True
         )
 
-        st.success("Regional Analysis Dashboard Loaded Successfully")
 
     # ==========================================
     # QUESTION 5
@@ -106,7 +101,7 @@ def run_powerbi_tasks():
             use_container_width=True
         )
 
-        st.success("KPI Dashboard Loaded Successfully")
+       
 
     # ==========================================
     # QUESTION 6
@@ -123,7 +118,6 @@ def run_powerbi_tasks():
             use_container_width=True
         )
 
-        st.success("Forecasting Dashboard Loaded Successfully")
 
     # ==========================================
     # QUESTION 7
@@ -140,21 +134,25 @@ def run_powerbi_tasks():
             use_container_width=True
         )
 
-        st.success("Scenario Dashboard Loaded Successfully")
+        
 
-    # # ==========================================
-    # # QUESTION 8
-    # # ==========================================
 
-    # elif powerbi_task == "Publish dashboard for executives":
 
-    #     st.subheader("Question-8 Published Executive Dashboard")
+    # ==========================================
+    # QUESTION 8
+    # ==========================================
 
-    #     image = Image.open("Assests/s8.png")
+    elif powerbi_task == "Publish dashboard for executives":
 
-    #     st.image(
-    #         image,
-    #         use_container_width=True
-    #     )
+        st.subheader("Published Executive Dashboard")
 
-        st.success("Executive Dashboard Published Successfully")
+        image = Image.open("Assests/s8.png")
+
+        st.markdown("<br><br>", unsafe_allow_html=True)
+
+        col1, col2, col3 = st.columns([1, 4, 1])
+
+        with col2:
+         st.image(image, width=850)
+
+       

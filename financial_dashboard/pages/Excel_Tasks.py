@@ -20,36 +20,6 @@ ASSETS_DIR = os.path.join(
 )
 
 # =====================================================
-# SAFE READ EXCEL
-# =====================================================
-
-def safe_read_excel(*args, **kwargs):
-
-    try:
-
-        return pd.read_excel(
-            EXCEL_FILE,
-            *args,
-            **kwargs
-        )
-
-    except FileNotFoundError:
-
-        st.error(
-            "Excel file not found: FinalExcelSureTrust.xlsx"
-        )
-
-        st.stop()
-
-    except Exception as e:
-
-        st.error(
-            f"Excel loading error: {e}"
-        )
-
-        st.stop()
-
-# =====================================================
 # MAIN FUNCTION
 # =====================================================
 
@@ -88,7 +58,8 @@ def run_excel_tasks(df):
             unsafe_allow_html=True
         )
 
-        q1_df = safe_read_excel(
+        q1_df = pd.read_excel(
+            EXCEL_FILE,
             sheet_name="Dataset & All Question",
             usecols="P:Q",
             skiprows=6,
@@ -120,7 +91,8 @@ def run_excel_tasks(df):
             unsafe_allow_html=True
         )
 
-        q1_df = safe_read_excel(
+        q1_df = pd.read_excel(
+            EXCEL_FILE,
             sheet_name="Dataset & All Question",
             usecols="P:Q",
             skiprows=11,
@@ -152,7 +124,8 @@ def run_excel_tasks(df):
             unsafe_allow_html=True
         )
 
-        q1_df = safe_read_excel(
+        q1_df = pd.read_excel(
+            EXCEL_FILE,
             sheet_name="Dataset & All Question",
             usecols="P:Q",
             skiprows=16,
@@ -183,7 +156,8 @@ def run_excel_tasks(df):
 
         st.subheader("Question-2 Pivot Report")
 
-        q2_df = safe_read_excel(
+        q2_df = pd.read_excel(
+            EXCEL_FILE,
             sheet_name="Question-2",
             skiprows=3
         )
@@ -228,7 +202,8 @@ def run_excel_tasks(df):
             unsafe_allow_html=True
         )
 
-        product_df = safe_read_excel(
+        product_df = pd.read_excel(
+            EXCEL_FILE,
             sheet_name="Dataset & All Question",
             usecols="C",
             skiprows=4,
@@ -237,7 +212,8 @@ def run_excel_tasks(df):
 
         product_list = product_df.iloc[:, 0].dropna().tolist()
 
-        data_df = safe_read_excel(
+        data_df = pd.read_excel(
+            EXCEL_FILE,
             sheet_name="Dataset & All Question",
             usecols="C,H,I,J",
             skiprows=4,
@@ -319,7 +295,8 @@ def run_excel_tasks(df):
             unsafe_allow_html=True
         )
 
-        q4_df = safe_read_excel(
+        q4_df = pd.read_excel(
+            EXCEL_FILE,
             sheet_name="Dataset & All Question",
             usecols="P:Q",
             skiprows=41,
@@ -397,7 +374,8 @@ def run_excel_tasks(df):
             "Forecast Sales using Exponential Smoothing"
         )
 
-        forecast_df = safe_read_excel(
+        forecast_df = pd.read_excel(
+            EXCEL_FILE,
             sheet_name="Question-5"
         )
 
@@ -444,7 +422,8 @@ def run_excel_tasks(df):
 
         st.subheader("Scenario Analysis Dashboard")
 
-        q6_df = safe_read_excel(
+        q6_df = pd.read_excel(
+            EXCEL_FILE,
             sheet_name="Question-6",
             skiprows=3
         )
@@ -508,7 +487,8 @@ def run_excel_tasks(df):
 
         st.subheader("Question-7 Data")
 
-        q7_df = safe_read_excel(
+        q7_df = pd.read_excel(
+            EXCEL_FILE,
             sheet_name="Question-7",
             skiprows=3
         )
@@ -529,7 +509,8 @@ def run_excel_tasks(df):
 
         st.subheader("VBA Pivot Report")
 
-        pivot_df = safe_read_excel(
+        pivot_df = pd.read_excel(
+            EXCEL_FILE,
             sheet_name="VBA-Pivot_Report Q_7",
             skiprows=3
         )

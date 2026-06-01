@@ -91,39 +91,58 @@ section[data-testid="stSidebar"] {
 
 /* ================= KPI CARDS ================= */
 
+/* KPI METRIC FULL FIX */
+
 [data-testid="metric-container"] {
 
-    background: #132238;
+    background: linear-gradient(
+        135deg,
+        #102544,
+        #0b1d35
+    ) !important;
 
-    border:
-        1px solid rgba(255,255,255,0.08);
+    border: 2px solid #00E5FF !important;
 
-    border-radius: 20px;
+    padding: 25px !important;
 
-    padding: 25px;
+    border-radius: 18px !important;
 
     box-shadow:
-        0px 4px 15px rgba(0,0,0,0.3);
+        0px 0px 20px rgba(0,229,255,0.35),
+        inset 0px 0px 8px rgba(255,255,255,0.04);
+
+    text-align: center !important;
 }
 
-/* KPI LABEL */
+/* KPI TITLE */
 
 [data-testid="metric-container"] label {
 
-    color: #94A3B8 !important;
+    color: #ffffff !important;
 
-    font-size: 16px !important;
+    font-size: 18px !important;
+
+    font-weight: 600 !important;
 }
 
 /* KPI VALUE */
 
-[data-testid="metric-container"] div {
+[data-testid="metric-container"] [data-testid="stMetricValue"] {
 
-    color: white !important;
+    color: #00E5FF !important;
 
-    font-size: 28px !important;
+    font-size: 42px !important;
 
-    font-weight: bold !important;
+    font-weight: 800 !important;
+
+    line-height: 1.2 !important;
+}
+
+/* REMOVE BLUE SELECTION */
+
+[data-testid="metric-container"] *::selection {
+
+    background: transparent !important;
 }
 
 /* ================= SELECTBOX ================= */
