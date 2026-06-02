@@ -199,7 +199,7 @@ st.markdown(
 
 - ##### **Dataset Source:** Kaggle
 
-- ##### **Dataset Name:** Superstore Corporate Dataset Final
+- ##### **Dataset Name:** Superstore Corporate Dataset
 
 - ##### **Format:** CSV / Excel
 

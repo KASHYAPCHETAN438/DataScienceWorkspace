@@ -14,14 +14,15 @@ def run_powerbi_tasks():
     powerbi_task = st.selectbox(
         "Select Power BI Task",
         [
+            "Publish dashboard for executives",
             "Dashboard: revenue, cost, profit trends",
             "Slicers for product categories",
             "YoY growth visualization",
             "Drill-through for regional analysis",
             "KPI cards for profitability",
             "Forecasting visuals for revenue",
-            "Scenario-based dashboards",    
-            "Publish dashboard for executives"
+            "Scenario-based dashboards"    
+            
         ]
     )
 

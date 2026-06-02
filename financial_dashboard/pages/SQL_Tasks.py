@@ -2,10 +2,15 @@
 # SQL TASKS PAGE (MYSQL BASED)
 # =====================================================
 
+from sqlalchemy import create_engine, inspect, text
 import streamlit as st
 import pandas as pd
 import plotly.express as px
 import mysql.connector
+import os
+from datetime import datetime
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 def run_sql_tasks():
@@ -32,12 +37,80 @@ def run_sql_tasks():
     # MYSQL CONNECTION
     # ==========================================
 
+    # conn = mysql.connector.connect(
+    #     host="localhost",
+    #     user="root",
+    #     password="231632043006",
+    #     database="financial_db"
+    # )
+
+
+
     conn = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="231632043006",
-        database="financial_db"
+    host="mysql-39690ef8-mayankmoriya4676-611f.a.aivencloud.com",
+    port=10263,
+    user="avnadmin",
+    password="AVNS__9dralZlTKlMM2_FOT9",
+    database="defaultdb"
+        )
+
+
+# ==========================================
+# LOAD DATASET INTO SQL
+# ==========================================
+
+    csv_path = os.path.join(
+        BASE_DIR,
+        "DatasetSureTrust.csv"
     )
+
+    df = pd.read_csv(
+        csv_path,
+        encoding="latin1"
+    )
+
+    df["Order Date"] = pd.to_datetime(
+        df["Order Date"],
+        format="%m/%d/%Y",
+        errors="coerce"
+    )
+
+    engine = create_engine(
+    "mysql+pymysql://avnadmin:AVNS__9dralZlTKlMM2_FOT9@mysql-39690ef8-mayankmoriya4676-611f.a.aivencloud.com:10263/defaultdb"
+        )
+
+    from sqlalchemy import text
+
+    with engine.begin() as connection:
+
+        connection.execute(
+            text("DROP TABLE IF EXISTS datasetsuretrust")
+        )
+
+        connection.execute(
+            text("""
+            CREATE TABLE datasetsuretrust (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                `Order Date` DATE,
+                `Product Name` VARCHAR(255),
+                Category VARCHAR(100),
+                Region VARCHAR(100),
+                Unit_cost DECIMAL(10,4),
+                Quantity INT,
+                Cost DECIMAL(12,2),
+                Sales DECIMAL(12,2),
+                Profit DECIMAL(12,2)
+            )
+            """)
+        )
+
+    df.to_sql(
+        "datasetsuretrust",
+        con=engine,
+        if_exists="append",
+        index=False
+    )
+
 
     # ==========================================
     # QUESTION 1
@@ -61,8 +134,7 @@ def run_sql_tasks():
             use_container_width=True
         )
 
-        st.success("datasetsuretrust Table Loaded Successfully")
-
+        
     # ==========================================
     # QUESTION 2
     # ==========================================
