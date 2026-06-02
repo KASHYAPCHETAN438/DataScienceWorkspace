@@ -7,8 +7,12 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import mysql.connector
+from dotenv import load_dotenv
 import os
+load_dotenv()
 from datetime import datetime
+
+
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -47,11 +51,11 @@ def run_sql_tasks():
 
 
     conn = mysql.connector.connect(
-    host="mysql-39690ef8-mayankmoriya4676-611f.a.aivencloud.com",
-    port=10263,
-    user="avnadmin",
-    password="AVNS__9dralZlTKlMM2_FOT9",
-    database="defaultdb"
+    host=os.getenv("DB_HOST"),
+    port=int(os.getenv("DB_PORT")),
+    user=os.getenv("DB_USER"),
+    password=os.getenv("DB_PASSWORD"),
+    database=os.getenv("DB_NAME")
         )
 
 
