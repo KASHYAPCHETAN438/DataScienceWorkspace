@@ -156,7 +156,7 @@ df = load_data()
 st.markdown(
     """
     <div class="main-title">
-        Corporate Financial Performance Dashboard
+        Corporate Financial Performance & Forecasting Dashboard
     </div>
     """,
     unsafe_allow_html=True
@@ -189,7 +189,7 @@ st.markdown(
 
 ## Description
             
-- ##### Superstore Dataset Final is a retail business dataset used for financial analytics, sales forecasting, and business intelligence projects.
+- ##### Coporate Superstore Financial Dataset Final is a retail business dataset used for financial analytics, sales forecasting, and business intelligence projects.
 
 - ##### It contains transactional records of products sold across different regions, including order date, product name, region, unit cost, quantity, sales, profit, category, and customer-related insights.
 
@@ -199,12 +199,13 @@ st.markdown(
 
 - ##### **Dataset Source:** Kaggle
 
-- ##### **Dataset Name:** Superstore Corporate Dataset
+- ##### **Dataset Name:** Corporate Superstore Financail Dataset
 
 - ##### **Format:** CSV / Excel
 
 - ##### **Project Type:** Corporate Financial Analytics
 
+- ##### **10 Thousand records and 16 column**
 """
 )
 
